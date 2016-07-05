@@ -1,6 +1,5 @@
 <?php
-require_once("classes/Database.php");
-require_once("classes/User.php");
+require_once("boot.php");
 
 echo '<h1>Liste des utilisateurs</h1>';
 echo '<button>Ajouter un utilisateur</button>';
@@ -10,9 +9,13 @@ echo '<button>Ajouter un utilisateur</button>';
 $user = new User();
 $users = $user->findAll();
 
+echo '<table>';
 foreach ($users as $u) {
-	echo '<p>' . $u->firstName . ' ' .
-	$u->lastName . '</p>';
-
-	//echo $u->getFullName();
+	echo '<tr>';
+	echo '<td>' . $u->getFullName() . '</td>';
+	echo '<td>Update</td>';
+	echo '<td><a href="user_delete.php?id='.$u->id.'">Delete</a></td>';
+	echo '</tr>';
 }
+echo '</table>';
+
