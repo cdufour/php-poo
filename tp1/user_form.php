@@ -2,8 +2,15 @@
 	require_once('boot.php');
 
 	if (isset($_GET['id'])) {
+		$mode = 'update';
+		// formulaire en mode update
 		$user = User::findById($_GET['id']);
-		var_dump($user);
+		//var_dump($user);
+	} else {
+		$mode = 'insert';
+		// formulaire en mode insert
+		// créer un user vide pour éviter "notice: undefined variable/property" (attributs value des input du formulaire)
+		$user = new User();
 	}
 
 	if (isset($_POST['submit'])) {
@@ -18,7 +25,16 @@
 		$user->lastName = $_POST['lastName'];
 		$user->email = $_POST['email'];
 
-		$user->insert();
+
+		// déterminer au submit si on est en mode update ou en mode insert
+		if (isset($_POST['id'])) {
+			//echo 'mode update';
+			$user->id = $_POST['id'];
+			$user->update();
+		} else {
+			//echo 'mode insert';
+			$user->insert();
+		}
 
 	}
 ?>
@@ -26,16 +42,22 @@
 <h2>Add User Form</h2>
 <form action="" method="post">
 	<label for="firstName">First Name</label>
-	<input type="text" name="firstName">
+	<input type="text" name="firstName" value="<?= $user->firstName ?>">
 	<br />
 
 	<label for="lastName">Last Name</label>
-	<input type="text" name="lastName">
+	<input type="text" name="lastName" value="<?= $user->lastName ?>">
 	<br />
 
 	<label for="email">Email</label>
-	<input type="email" name="email">
+	<input type="email" name="email" value="<?= $user->email ?>">
 	<br />
+
+	<?php 
+		if ($mode == 'update') {
+			echo '<input type="hidden" name="id" value="'. $user->id .'">';
+		}
+	?>
 
 	<input type="submit" name="submit">
 </form>

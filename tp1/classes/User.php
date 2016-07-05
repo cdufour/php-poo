@@ -76,9 +76,15 @@ class User
 		$sth->execute();
 	}
 
-	public function update($id)
+	public function update()
 	{
+		$sth = $this->db->prepare("UPDATE user SET firstName=:firstName, lastName=:lastName, email=:email WHERE id=:id");
+		$sth->bindValue(':firstName', $this->firstName);
+		$sth->bindValue(':lastName', $this->lastName);
+		$sth->bindValue(':email', $this->email);
+		$sth->bindValue(':id', $this->id);
 
+		$sth->execute();
 	}
 
 	public function delete()
