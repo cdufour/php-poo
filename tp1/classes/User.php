@@ -34,6 +34,10 @@ class User
 			// instanciation d'objet + hydration
 			$user = new User();
 			$user->id = $result->id;
+			$user->firstName = $result->firstName;
+			$user->lastName = $result->lastName;
+			$user->email = $result->email;
+
 			return $user;
 		}
 
@@ -64,7 +68,12 @@ class User
 
 	public function insert()
 	{
+		$sth = $this->db->prepare("INSERT INTO user (firstName, lastName, email) VALUES (:firstName, :lastName, :email)");
+		$sth->bindValue(':firstName', $this->firstName);
+		$sth->bindValue(':lastName', $this->lastName);
+		$sth->bindValue(':email', $this->email);
 
+		$sth->execute();
 	}
 
 	public function update($id)
