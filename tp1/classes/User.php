@@ -17,6 +17,20 @@ class User
 		$this->db = $connection->connection();
 	}
 
+	public static function countAll()
+	{
+		$connection = new Database();
+		self::$database = $connection->connection();
+		$sth = self::$database->query("SELECT COUNT(*) FROM user");
+		$sth->execute();
+		$result = $sth->fetch(PDO::FETCH_NUM); // FETCH_NUM renvoie un tableau (et non pas un object);
+		
+		return $result[0];
+
+		//variante
+		//return array_shift($result);
+	}
+
 	// méthode statique = méthode de classe
 	// invoquée par le ::
 	public static function findById($id)
@@ -87,10 +101,25 @@ class User
 		$sth->execute();
 	}
 
+	public function save()
+	{
+		/*
+		if (isset($this->id)) {
+			$this->update();
+		} else {
+			$this->insert();
+		}
+		*/
+
+		// notation ternaire
+		// expression ? true : false
+		isset($this->id) ? $this->update() : $this->insert();
+	}
+
 	public function delete()
 	{
 		$sth = $this->db->query("DELETE FROM user WHERE id=".$this->id);
-		$sth->execute();
+		$sth->execute(); // retourne 1 si succès
 	}
 
 	public function getFullName()

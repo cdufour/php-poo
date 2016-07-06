@@ -2,6 +2,7 @@
 require_once("boot.php");
 
 echo '<h1>Liste des utilisateurs</h1>';
+echo '<p>Nombre d\'utilisateurs: ' . User::countAll() . '</p>';
 echo '<a href="user_form.php">Ajouter un utilisateur</a>';
 
 // Afficher la liste

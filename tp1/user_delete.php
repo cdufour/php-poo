@@ -9,6 +9,8 @@ if (isset($_GET['id'])) {
 		echo 'User introuvable';
 	} else {
 		$user->delete();
+		//echo '<div class="success">Utilisateur supprimé</div>';
+		redirect('index.php');
 	}
 
 } else {
