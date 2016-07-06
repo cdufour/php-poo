@@ -1,22 +1,10 @@
-Exercice
+Exercices
 
 Créer un object (une classe) User
 propriétés : firstName, lastName, age
 methode : getFullName qui renvoie la concaténation de firstName + lastName
 
-cd /var/www/html
-mkdir debug // création
-cd debug
 
-touch index.php // création du fichier
-chmod 777 index.php // changement des droits
+Implémenter dans la classe User une méthode statique countAll() renvoyant le nombre d'utilisateurs enregistrés dans la table user
 
-sudo nano index.php
-// modif
-	<?php
-	echo 'parfait';
-
-CTRL + X : quitter
-MAJ + Y : YES à la demande d'enregistrement
-ENTER
 
