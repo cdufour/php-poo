@@ -126,4 +126,14 @@ class User
 	{
 		return $this->firstName . ' ' . $this->lastName;
 	}
+
+	public function load($id) {
+		$sql = 'SELECT FROM user WHERE id = ' . (int) $id;
+		$result = $this->db->query($sql);
+		$row = $result->fetch(PDO::FETCH_ASSOC);
+
+		foreach ($row as $column => $value) {
+			$this->$column = $value;
+		}
+	}
 }

@@ -24,7 +24,7 @@ abstract class Document implements Format
 
 class Book extends Document
 {
-	public $title;
+	public $title = "Tintin à Cachan";
 }
 
 class Article extends Document
@@ -38,6 +38,9 @@ $a = new Article();
 
 
 echo $b->textFormat('gsd gsdgs gsdgsd');
+echo '<br />';
+
+echo $b->htmlFormat('title');
 
 echo '<br />';
 

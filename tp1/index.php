@@ -20,3 +20,5 @@ foreach ($users as $u) {
 }
 echo '</table>';
 
+$u = new User();
+$u->load(3);
