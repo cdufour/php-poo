@@ -1,5 +1,9 @@
 <?php require_once('../../includes/boot.php'); ?>
 <?php include_layout_template("admin_header.php") ?>
+<?php
+  $users = User::findAll();
+  //var_dump($users);
+?>
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -26,6 +30,17 @@
               <div class="row">
                   <div class="col-lg-12">
                       <h1 class="page-header">Users</h1>
+
+                      <table class="table">
+                        <?php foreach ($users as $user): ?>
+                          <tr>
+                            <td><?= $user->attr('id') ?></td>
+                            <td><?= $user->attr('firstName') ?></td>
+                            <td><?= $user->attr('lastName') ?></td>
+                          </tr>
+                        <?php endforeach ?>
+                      </table>
+
                       <ol class="breadcrumb">
                           <li>
                               <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>

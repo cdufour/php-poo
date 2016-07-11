@@ -37,9 +37,9 @@ abstract class DBRecord
 
   public static function findAll()
   {
-    global $database;
+    global $database; // on appelle la variable $database definie dans le fichie Database.php, cad en dehors du scope (local) de la méthode findAll();
 
-    $q = $database->query("SELECT * FROM ". static::$dbTable);
+    $q = $database->query("SELECT * FROM ". static::$dbTable); //late static binding permet de résoudre des expressions statiques dans les classes filles. La classe fille fournit la valeur de la propriété statique ($dbTable)
     $q->execute();
     $results = $q->fetchAll(PDO::FETCH_OBJ);
 

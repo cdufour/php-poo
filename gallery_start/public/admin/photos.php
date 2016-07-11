@@ -1,5 +1,8 @@
 <?php require_once('../../includes/boot.php'); ?>
 <?php include_layout_template("admin_header.php") ?>
+<?php
+$photos = Photo::findAll();
+?>
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -25,6 +28,17 @@
               <div class="row">
                   <div class="col-lg-12">
                       <h1 class="page-header">Photos</h1>
+
+                      <table class="table">
+                        <?php foreach ($photos as $photo): ?>
+                          <tr>
+                            <td><?= $photo->attr('id') ?></td>
+                            <td><?= $photo->attr('title') ?></td>
+                            <td><?= $photo->attr('description') ?></td>
+                          </tr>
+                        <?php endforeach ?>
+                      </table>
+
                       <ol class="breadcrumb">
                           <li>
                               <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>

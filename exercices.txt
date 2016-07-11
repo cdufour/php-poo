@@ -1,10 +1,17 @@
 Exercices
 
+**********************************
 Créer un object (une classe) User
 propriétés : firstName, lastName, age
 methode : getFullName qui renvoie la concaténation de firstName + lastName
 
-
+**********************************
 Implémenter dans la classe User une méthode statique countAll() renvoyant le nombre d'utilisateurs enregistrés dans la table user
 
-
+**********************************
+Créer une classe Transform implémentant un constructeur et une méthode format().
+Le constructeur prendra un tableau en entrée, la méthode format retournera les valeurs de ce tableau formaté selon une liste HTML
+Exemple d'utilisation:
+$arr = [1,2,3];
+$list = new Transform($arr);
+echo $list->format(); // affiche <ul><li>1</li><li>2</li><li>3</li></ul>

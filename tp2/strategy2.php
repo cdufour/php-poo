@@ -102,8 +102,11 @@ $dbw = new DBWriter(new XMLFormater, $pdo);
 //var_dump($dbw);
 $dbw->write('bisou');
 
-$fw = new FileWriter(new HTMLFormater, 'log.txt');
+$fw = new FileWriter(new PDFFormater, 'log.txt');
 $fw->write('bisou');
+
+// Développement possible
+// Créer une classe PDFFormater
 
 
 
